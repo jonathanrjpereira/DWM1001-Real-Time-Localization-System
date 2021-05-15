@@ -1,0 +1,103 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="dwm-simple" target="8" version="2">
+  <project Name="dwm-simple">
+    <configuration
+      Name="Common"
+      arm_architecture="v7M"
+      arm_core_type="Cortex-M4"
+      arm_endian="Little"
+      arm_fp_abi="Soft"
+      arm_fpu_type="None"
+      arm_simulator_memory_simulation_parameter="RX 16b05ee0,0000000a,FFFFFFFF;RWX e53c6876,00007ffb,CDCDCDCD"
+      arm_target_device_name=""
+      arm_target_interface_type="SWD"
+      debug_start_from_entry_point_symbol="No"
+      debug_target_connection="J-Link"
+      linker_section_placements_segments="FLASH RX 0x16b05ee0 0x0000000a;SRAM RWX 0xe53c6876 0x00007ffb"
+      project_directory=""
+      project_type="Externally Built Executable" />
+    <folder Name="Source">
+      <file file_name="dwm-simple.c" />
+    </folder>
+    <folder Name="Internal">
+      <file file_name="dwm.o" />
+      <file file_name="libdwm.a" />
+    </folder>
+    <configuration
+      Name="Debug"
+      c_user_include_directories=".;./../../lib;./../../include" />
+    <configuration
+      Name="dwm1001_configuration"
+      arm_architecture="v7EM"
+      arm_core_type="Cortex-M4"
+      arm_endian="Little"
+      arm_fp_abi="Hard"
+      arm_fpu_type="FPv4-SP-D16"
+      arm_simulator_memory_simulation_parameter="RX 00000000,00080000,FFFFFFFF;RWX 20000000,00010000,CDCDCDCD"
+      arm_target_device_name="nRF52832_xxAA"
+      asm_additional_options=""
+      c_only_additional_options=""
+      c_user_include_directories="./../../include;./../../lib;."
+      link_linker_script_file="./../../lib/target_s132_fw2.ld"
+      link_use_linker_script_file="Yes"
+      linker_section_placements_segments="FLASH RX 0x00000000 0x00080000;SRAM RWX 0x20000000 0x00010000"
+      project_type="Externally Built Executable" />
+    <folder Name="Header">
+      <file file_name="../../include/dwm.h" />
+    </folder>
+  </project>
+  <configuration
+    Name="dwm1001_configuration"
+    arm_architecture="v7EM"
+    arm_core_type="Cortex-M4"
+    arm_endian="Little"
+    arm_fp_abi="Hard"
+    arm_fpu_type="FPv4-SP-D16"
+    arm_linker_additional_output_file_gap_fill=""
+    arm_linker_treat_warnings_as_errors="No"
+    arm_linker_variant="ld"
+    arm_simulator_memory_simulation_parameter="RX 00000000,00080000,FFFFFFFF;RWX 20000000,00010000,CDCDCDCD"
+    arm_target_device_name="nRF52832_xxAA"
+    arm_target_interface_type="SWD"
+    asm_additional_options=""
+    build_intermediate_directory="output/compiler"
+    build_output_directory="output/linker"
+    build_output_file_name="$(SolutionDir)/output/linker/$(SolutionName)_fw2.elf"
+    build_toolchain_directory="C:\Program Files (x86)\GNU Tools ARM Embedded\5.4 2016q3\bin"
+    c_additional_options="-mcpu=$(CoreType);-mfpu=$(FPU);-mfloat-abi=$(FPABI);-ffunction-sections;-fdata-sections -Wall -Wall -Wpointer-arith -Wstrict-prototypes -Wundef  -Wno-write-strings -mthumb -O0 -g -fno-exceptions -Wno-pointer-arith -DNRF52 -DNRF52832 -D__LINT__=0"
+    debug_additional_load_file="$(ProjectDir)/../../recovery/s132_nrf52_3.0.0_softdevice.hex"
+    debug_additional_load_file1="$(ProjectDir)/../../recovery/bootloader_s132.bin"
+    debug_additional_load_file2="$(ProjectDir)/../../recovery/dwm-core_fw1.bin"
+    debug_additional_load_file_address="0x00000000"
+    debug_additional_load_file_address1="0x1f000 "
+    debug_additional_load_file_address2="0x22000 "
+    debug_additional_load_file_type="Detect"
+    debug_additional_load_file_type1="Detect"
+    debug_additional_load_file_type2="Detect"
+    debug_initial_breakpoint="dwm_user_start"
+    debug_leave_target_running="No"
+    debug_load_sections="Detect"
+    debug_startup_completion_point="dwm_user_start"
+    debug_target_connection="J-Link"
+    external_archive_command=""
+    external_assemble_command=""
+    external_build_file_name=""
+    external_c_compile_command="&quot;$(ToolChainDir)/arm-none-eabi-gcc&quot; -c  &quot;$(RelInputPath)&quot; $(Includes) $(COptions)  -o $(TargetPath)"
+    external_cpp_compile_command=""
+    external_link_command="&quot;$(ToolChainDir)/arm-none-eabi-gcc&quot; -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -mthumb -Wl,--gc-sections -Wl,-static -Wl,-n -g -nostdlib -o &quot;$(SolutionDir)/output/linker/$(SolutionName)_fw2.elf&quot; &quot;$(SolutionDir)/output/compiler/*.o&quot;  &quot;$(SolutionDir)/../../lib/dwm.o&quot;  &quot;$(SolutionDir)/../../lib/libdwm.a&quot; -nostartfiles -L  &quot;$(SolutionDir)/../../lib&quot; -Wl,-Map,&quot;$(SolutionDir)/output/linker/$(SolutionName)_fw2.map&quot; -T &quot;$(SolutionDir)/../../lib/target_s132_fw2.ld&quot; -lm -lgcc -lc -lnosys"
+    external_load_address=""
+    external_load_file_type="Detect"
+    gcc_debugging_level="Level 3"
+    inherited_configurations="External GNU;Common"
+    link_linker_script_file="$(ProjectDir)/lib/target_s132_fw2.ld"
+    link_use_linker_script_file="Yes"
+    linker_additional_options=""
+    linker_map_file="Yes"
+    linker_memory_map_file=""
+    linker_output_format="bin"
+    linker_post_build_command="&quot;$(ToolChainDir)/arm-none-eabi-objcopy&quot; -O binary &quot;$(SolutionDir)/output/linker/$(SolutionName)_fw2.elf&quot;  &quot;$(SolutionDir)/output/linker/$(SolutionName)_fw2.bin&quot;"
+    linker_post_build_command_output_file=""
+    linker_section_placements_segments="FLASH RX 0x00000000 0x00080000;SRAM RWX 0x20000000 0x00010000"
+    project_type="Externally Built Executable"
+    speed="1000" />
+</solution>
