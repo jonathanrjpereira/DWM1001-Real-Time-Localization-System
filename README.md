@@ -29,6 +29,7 @@ Encryption, Bluetooth and GPIO LEDs are all enabled. Firmware updates and Bridge
 Set the Anchor UWB Operation mode to Active.
 
 ## Tag Configuration
+Encryption, Bluetooth and GPIO LEDs are all enabled. Firmware updates and Low-power mode are disabled for the tag.
 
 **Update Rate Mode**
 
@@ -53,3 +54,31 @@ Optional - One can simply use the Internal Location Engine to calculate the tag 
 
     set_t_cfg.common.uwb_mode = DWM_UWB_MODE_ACTIVE
 Set the Tag UWB Operation mode to Active.
+
+## List of Anchors in the Network
+When a node is configured as an anchor, it prints over UART the following data about the surrounding anchors within the same network:
+
+ -  Node ID (MAC ID).
+ - Preconfigured X, Y, Z position coordinates in mm.
+- RSSI
+- Seat number in network and Neighbor network
+
+## Tag Location
+
+ - When a node is configured as a Tag, it prints the distances to the three anchors alongwith their respective anchor node IDs over UART.
+ - The Python script reads the distance data and performs a series of rule based filtering in order to remove any corrupted data.
+ - It then performs basic trilateration in order to calculate the tags location.
+ - `samples_to_count` is used to configure the number of consecutive samples to be averaged inorder to reduce the effect of noisy distance measurements.
+
+## Real-Time Visualization
+
+ **Multithreading**
+ We use the Python threading module alongwith Matplotlib animation functionality in order to speed up the real-time visualization of the tag location.
+
+ **Floorplan Overlay**
+A 1x scaled image of the floorplan / room layout can be overlayed below the anchor/tag node locations in order to provide additional spatial context.
+
+## Test Scenario
+
+ - The anchors are placed on a 2D plane at fixed locations.
+ - The floorplan is overlayed below the anchor/tag locations. The anchors lie at the edge of the floorplan as shown. The room contains a twin-size bed and side table that are marked in yellow.
