@@ -1,4 +1,3 @@
-# Example code for UART reading
 import serial
 import time
 import threading
@@ -13,7 +12,7 @@ import random
 
 import matplotlib.image as mpimg
 
-
+# Anchor node locations
 # anchor = #4 #3 #2
 anchor_x = [0,3280,3280]
 anchor_y = [3070,3070,0]
