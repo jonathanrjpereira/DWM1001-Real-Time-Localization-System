@@ -1,3 +1,4 @@
+![Banner](https://github.com/jonathanrjpereira/DWM1000-Real-Time-Localization-System/blob/main/img/banner.svg)
 ## Features
 This project implements the following features:
  - Precise distance and location measurements using DWM1001 UWB radios.
